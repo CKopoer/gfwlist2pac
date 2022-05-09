@@ -55,12 +55,12 @@ jobs:
           cd genpac
           sed 's/from collections import Callable/from collections.abc import Callable/g' -i $(grep 'from collections import Callable' . -rIl)
           python setup.py install
-
+          
 
       - name: Update
         run: |
           set -x
-
+          git config --global --add safe.directory /__w/gfwlist2pac/gfwlist2pac
           genpac --pac-proxy "SOCKS5 127.0.0.1:7890" --gfwlist-url - --gfwlist-local gfwlist/gfwlist.txt -o gfwlist.pac
           sed '1,7d' -i gfwlist.pac
 
