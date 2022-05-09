@@ -64,11 +64,11 @@ jobs:
           cp ssh_config /root/.ssh/config
           pwd
 
-          ll
+          ls
 
           cd gfwlist2pac
 
-          ll
+          ls
 
 
           git config user.name ${{ secrets.GIT_COMMIT_NAME }}
