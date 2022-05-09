@@ -4,11 +4,6 @@ on:
   schedule:
     - cron: '37 19 * * *'
   workflow_dispatch:
-    ssh:
-        description: 'SSH connection to Actions'
-        required: true
-        default: 'true'
-
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -61,15 +56,6 @@ jobs:
           sed 's/from collections import Callable/from collections.abc import Callable/g' -i $(grep 'from collections import Callable' . -rIl)
           python setup.py install
 
-      - name: SSH connection to Actions
-        uses: P3TERX/ssh2actions@v1.0.0
-
-        env:
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-
-
-
 
       - name: Update
         run: |
@@ -77,7 +63,7 @@ jobs:
 
           cp ssh_config /root/.ssh/config
           pwd
-          
+
 
           git config user.name ${{ secrets.GIT_COMMIT_NAME }}
           git config user.email ${{ secrets.GIT_COMMIT_EMAIL }}
