@@ -63,3 +63,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           file_pattern: "*.pac"
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
