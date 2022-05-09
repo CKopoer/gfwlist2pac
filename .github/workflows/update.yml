@@ -62,6 +62,7 @@ jobs:
           set -x
 
           cp ssh_config /root/.ssh/config
+          git config --global --add safe.directory "*"
 
           genpac --pac-proxy "SOCKS5 127.0.0.1:7890" --gfwlist-url - --gfwlist-local gfwlist/gfwlist.txt -o gfwlist.pac
           sed '1,7d' -i gfwlist.pac
