@@ -76,6 +76,9 @@ jobs:
           set -x
 
           cp ssh_config /root/.ssh/config
+          pwd
+          
+
           git config user.name ${{ secrets.GIT_COMMIT_NAME }}
           git config user.email ${{ secrets.GIT_COMMIT_EMAIL }}
 
