@@ -64,6 +64,12 @@ jobs:
           cp ssh_config /root/.ssh/config
           pwd
 
+          ll
+
+          cd gfwlist2pac
+
+          ll
+
 
           git config user.name ${{ secrets.GIT_COMMIT_NAME }}
           git config user.email ${{ secrets.GIT_COMMIT_EMAIL }}
