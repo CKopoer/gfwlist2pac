@@ -5,12 +5,6 @@ on:
     - cron: '37 19 * * *'
   workflow_dispatch:
 
-env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
-  FEEDS_CONF: feeds.conf.default
-  UPLOAD_RELEASE: false
-  TZ: Asia/Shanghai
 
 jobs:
   update:
@@ -80,4 +74,4 @@ jobs:
       - name: Git Auto Commit
         uses: stefanzweifel/git-auto-commit-action@v4.14.1
         with:
-          file_pattern: *.pac
+          file_pattern: gfwlist.pac
