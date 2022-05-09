@@ -66,7 +66,7 @@ jobs:
 
           ls
 
-          cd gfwlist2pac
+          cd gfwlist
 
           ls
 
