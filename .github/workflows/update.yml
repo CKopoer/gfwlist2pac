@@ -8,14 +8,11 @@ on:
 
 jobs:
   update:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     container:
       image: archlinux
 
     steps:
-      - name: Save ssh key
-        run: |
-          echo "${{ secrets.SSH_KEY }}" | install -Dm400 /dev/stdin /root/.ssh/github
 
       - name: Get time
         id: time
@@ -62,6 +59,7 @@ jobs:
       - name: Git Auto Commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
+          repository: .
           file_pattern: "*.pac"
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
