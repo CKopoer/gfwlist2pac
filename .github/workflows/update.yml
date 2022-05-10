@@ -54,13 +54,8 @@ jobs:
           genpac --pac-proxy "SOCKS5 127.0.0.1:7890" --gfwlist-url - --gfwlist-local gfwlist/gfwlist.txt -o gfwlist.pac
           sed '1,7d' -i gfwlist.pac
           git config --global --add safe.directory /__w/gfwlist2pac/gfwlist2pac
-
-      - name: Git Auto Commit
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          file_pattern: "*.pac"
-          commit_message: "[$(LANG=C date)] auto update"
-      
+          
+          
       - name: Add & Commit
         uses: EndBug/add-and-commit@v6
         with:
@@ -70,3 +65,12 @@ jobs:
           add: "*.pac"
         env:
           token: ${{ secrets.GITHUB_TOKEN }}
+          
+          
+      - name: Git Auto Commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: "*.pac"
+          commit_message: "[$(LANG=C date)] auto update"
+      
+
