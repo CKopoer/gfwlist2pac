@@ -60,6 +60,6 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           file_pattern: "*.pac"
-          commit_message: $(LANG=C date) auto update
+          commit_message: Auto update
       
 
