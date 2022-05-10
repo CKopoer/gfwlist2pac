@@ -49,17 +49,24 @@ jobs:
 
 
       - name: Update
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
           set -x
+
+          mkdir -p ~/.ssh/
+          echo "$ACCESS_TOKEN" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git config --global user.email ${{ secrets.GIT_COMMIT_EMAIL }}
+          git config --global user.name ${{ secrets.GIT_COMMIT_NAME }}
 
           genpac --pac-proxy "SOCKS5 127.0.0.1:7890" --gfwlist-url - --gfwlist-local gfwlist/gfwlist.txt -o gfwlist.pac
           sed '1,7d' -i gfwlist.pac
           git config --global --add safe.directory /__w/gfwlist2pac/gfwlist2pac
 
-      - name: Git Auto Commit
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          repository: .
-          file_pattern: "*.pac"
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          git add gfwlist.pac
+          git commit -m "[$(LANG=C date)] auto update" || exit
+          [ -n "${{ secrets.READ_ONLY }}" ] && git show && exit
+          git push origin master
+
