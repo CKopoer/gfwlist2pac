@@ -55,7 +55,21 @@ jobs:
           sed '1,7d' -i gfwlist.pac
           git config --global --add safe.directory /__w/gfwlist2pac/gfwlist2pac
           
-          
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: bmlsj
+          author_email: gaga2353@gmail.com
+          message: "[$(LANG=C date)] auto update"
+          add: "*.pac"
+
+
+
+
+
+
+
       - name: Add & Commit
         uses: EndBug/add-and-commit@v6
         with:
