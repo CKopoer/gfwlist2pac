@@ -6,7 +6,7 @@ change Port from 1080 to 7890 for Clash
 
 Just use https://raw.githubusercontent.com/CKopoer/gfwlist2pac/master/gfwlist.pac
 
-Notice: Please enable the **writing permission** for action in this reop if you wanna to implement update action yourself 
+Notice: Please enable the **writing permission** for action in this reop if you wanna implement update-action yourself 
 
 **Setting-Action-General**
 
